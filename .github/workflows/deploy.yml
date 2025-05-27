@@ -1,0 +1,106 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to push version commits
+      id-token: write # Required for AWS OIDC (if using)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0 # Fetch full history for version bumping
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: website/package-lock.json
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.12.1
+
+      - name: Install dependencies
+        run: |
+          cd website
+          npm ci
+
+      - name: Build website
+        run: |
+          cd website
+          npm run build
+
+      - name: Calculate and commit version
+        id: version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MSG"
+
+          if [[ "$COMMIT_MSG" == feat:* ]]; then
+            BUMP=minor
+          elif [[ "$COMMIT_MSG" == fix:* || "$COMMIT_MSG" == chore:* || "$COMMIT_MSG" == docs:* || "$COMMIT_MSG" == refactor:* || "$COMMIT_MSG" == perf:* ]]; then
+            BUMP=patch
+          else
+            echo "❌ Invalid commit message format"
+            exit 1
+          fi
+
+          cd website
+          VERSION=$(npm version $BUMP --no-git-tag-version)
+          echo "Calculated version: $VERSION"
+
+          # Commit the version bump
+          cd ..
+          git add website/package.json website/package-lock.json
+          git commit -m "chore: bump version to $VERSION [skip ci]"
+          git push
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Initialize Terraform
+        run: |
+          cd infrastructure/terraform
+          terraform init
+
+      - name: Deploy infrastructure
+        run: |
+          cd infrastructure/terraform
+          terraform plan
+          terraform apply -auto-approve
+
+      - name: Deploy website
+        run: |
+          ./infrastructure/scripts/deploy.sh
+
+      - name: Create deployment summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version**: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployed by**: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployment time**: $(date)" >> $GITHUB_STEP_SUMMARY

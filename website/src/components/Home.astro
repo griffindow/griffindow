@@ -1,0 +1,170 @@
+---
+import Sonafied from "../assets/sonafied.svg";
+import Autodesk from "../assets/autodesk.svg";
+import AtlasDrivingSchool from "../assets/atlasdrivingschool.svg";
+import Github from "../assets/github.svg";
+import X from "../assets/x.svg";
+import BlueSky from "../assets/bluesky.svg";
+---
+
+<div
+  id="container"
+  class="relative min-h-full bg-[#0d0d0d] text-[#e5e5e5] flex flex-col justify-center"
+>
+  <main
+    class="relative min-h-full z-10 container mx-auto px-6 py-16 text-graphite justify-center items-center flex flex-col max-w-4xl"
+  >
+    <!-- Avatar Section -->
+    <section class="text-center mb-8">
+      <div class="relative inline-block">
+        <img
+          src="/favicon.png"
+          class="mb-6 w-[128px] h-[128px] md:w-[192px] md:h-[192px] rounded-full border-4 border-[#2a2a2a] shadow-2xl transition-transform duration-300 hover:scale-105"
+          alt="Avatar"
+        />
+        <div
+          class="absolute inset-0 rounded-full bg-gradient-to-br from-transparent to-[#0d0d0d]/20"
+        >
+        </div>
+      </div>
+    </section>
+
+    <!-- Name and Bio Section -->
+    <section class="text-center mb-12">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-[#e5e5e5] mb-6 tracking-tight"
+      >
+        Griffin Dow
+      </h1>
+      <p class="text-lg md:text-xl text-[#a1a1aa] max-w-2xl leading-relaxed">
+        Furry. Coder. Mostly quiet. I build because I care — about freedom,
+        beauty, and the people behind the art.
+      </p>
+    </section>
+
+    <!-- Social Links -->
+    <section class="text-center mb-20">
+      <h2 class="text-xl font-semibold text-[#e5e5e5] mb-6">Connect</h2>
+      <div class="flex gap-8 justify-center">
+        <a
+          href="https://x.com/griffinodow"
+          class="group p-3 rounded-full bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-all duration-300 hover:scale-110"
+          aria-label="X"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <X
+            fill="currentColor"
+            class="w-[28px] h-[28px] text-[#a1a1aa] group-hover:text-white transition-colors duration-300"
+          />
+        </a>
+        <a
+          href="https://bsky.app/profile/griffindow.bsky.social"
+          class="group p-3 rounded-full bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-all duration-300 hover:scale-110"
+          aria-label="BlueSky"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <BlueSky
+            fill="currentColor"
+            class="w-[28px] h-[28px] text-[#a1a1aa] group-hover:text-white transition-colors duration-300"
+          />
+        </a>
+        <a
+          href="https://github.com/griffindow"
+          class="group p-3 rounded-full bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-all duration-300 hover:scale-110"
+          aria-label="GitHub"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Github
+            fill="currentColor"
+            class="w-[28px] h-[28px] text-[#a1a1aa] group-hover:text-white transition-colors duration-300"
+          />
+        </a>
+      </div>
+    </section>
+
+    <!-- Contributions Section -->
+    <section class="text-center w-full">
+      <h2 class="text-3xl font-bold text-[#e5e5e5] mb-12">Contributions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <div class="group h-full">
+          <a
+            href="https://sonafied.com"
+            class="block p-6 rounded-xl bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-all duration-300 hover:scale-105 hover:shadow-xl border border-[#2a2a2a] hover:border-[#3a3a3a] h-full flex flex-col"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="flex justify-center mb-4">
+              <Sonafied
+                fill="currentColor"
+                class="w-[80px] h-[80px] text-[#a1a1aa] group-hover:text-white transition-colors duration-300"
+              />
+            </div>
+            <h3 class="text-xl font-bold text-[#e5e5e5] mb-2">Sonafied</h3>
+            <p
+              class="text-sm text-[#a1a1aa] group-hover:text-[#c1c1ca] transition-colors duration-300 mt-auto"
+            >
+              Passion Project
+            </p>
+          </a>
+        </div>
+
+        <div class="group h-full">
+          <a
+            href="https://autodesk.com"
+            class="block p-6 rounded-xl bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-all duration-300 hover:scale-105 hover:shadow-xl border border-[#2a2a2a] hover:border-[#3a3a3a] h-full flex flex-col"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="flex justify-center mb-4">
+              <Autodesk
+                fill="currentColor"
+                class="w-[80px] h-[80px] text-[#a1a1aa] group-hover:text-white transition-colors duration-300"
+              />
+            </div>
+            <h3 class="text-xl font-bold text-[#e5e5e5] mb-2">Autodesk</h3>
+            <p
+              class="text-sm text-[#a1a1aa] group-hover:text-[#c1c1ca] transition-colors duration-300 mt-auto"
+            >
+              2022 - Present
+            </p>
+          </a>
+        </div>
+
+        <div class="group h-full">
+          <a
+            href="https://atlasdrivingschool.ca"
+            class="block p-6 rounded-xl bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-all duration-300 hover:scale-105 hover:shadow-xl border border-[#2a2a2a] hover:border-[#3a3a3a] h-full flex flex-col"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="flex justify-center mb-4">
+              <AtlasDrivingSchool
+                fill="currentColor"
+                class="w-[80px] h-[80px] text-[#a1a1aa] group-hover:text-white transition-colors duration-300"
+              />
+            </div>
+            <h3 class="text-xl font-bold text-[#e5e5e5] mb-2">
+              Atlas Driving School
+            </h3>
+            <p
+              class="text-sm text-[#a1a1aa] group-hover:text-[#c1c1ca] transition-colors duration-300 mt-auto"
+            >
+              2021 - 2022
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-20 pt-8 border-t border-[#2a2a2a] text-center">
+      <p class="text-sm text-[#666666] mb-2">
+        © <span id="current-year">{new Date().getFullYear()}</span> Griffin Dow.
+        Built with care.
+      </p>
+    </footer>
+  </main>
+</div>
