@@ -21,9 +21,12 @@ build/
 *.tfstate
 *.tfstate.*
 .terraform/
-.terraform.lock.hcl
 *.tfplan
 *.tfvars.backup
+
+# Exception: Keep bootstrap state file (needed to maintain control of backend infrastructure)
+!infrastructure/terraform/bootstrap/terraform.tfstate
+!infrastructure/terraform/bootstrap/terraform.tfstate.backup
 
 # AWS
 .aws/
