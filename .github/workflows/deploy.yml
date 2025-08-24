@@ -50,6 +50,10 @@ jobs:
           npm ci
           npm run build
 
+      - name: CDK Bootstrap
+        working-directory: cdk
+        run: npx cdk bootstrap aws://205930649223/us-east-1
+
       - name: CDK Deploy
         working-directory: cdk
         run: npx cdk deploy --require-approval never
