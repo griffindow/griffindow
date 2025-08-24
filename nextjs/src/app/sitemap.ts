@@ -4,4 +4,6 @@ export default async function sitemap() {
   ];
 }
 
+export const dynamic = "force-static";
+
 

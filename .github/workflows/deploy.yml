@@ -27,7 +27,9 @@ jobs:
         with:
           node-version: "22"
           cache: "npm"
-          cache-dependency-path: website/package-lock.json
+          cache-dependency-path: |
+            nextjs/package-lock.json
+            cdk/package-lock.json
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -35,4 +37,20 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install deps and build Next.js static export
+        working-directory: nextjs
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install CDK deps and build
+        working-directory: cdk
+        run: |
+          npm ci
+          npm run build
+
+      - name: CDK Deploy
+        working-directory: cdk
+        run: npx cdk deploy CdkStack --require-approval never
 

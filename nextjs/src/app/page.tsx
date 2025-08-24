@@ -4,6 +4,8 @@ import { InstagramCard } from "@/components/InstagramCard";
 import { LinkedInCard } from "@/components/LinkedInCard";
 import { GitHubCard } from "@/components/GitHubCard";
 
+export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <div className="font-sans">

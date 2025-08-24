@@ -5,4 +5,6 @@ export default function robots() {
   } as const;
 }
 
+export const dynamic = "force-static";
+
 
