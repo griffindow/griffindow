@@ -52,5 +52,5 @@ jobs:
 
       - name: CDK Deploy
         working-directory: cdk
-        run: npx cdk deploy CdkStack --require-approval never
+        run: npx cdk deploy --require-approval never
 

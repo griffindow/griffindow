@@ -2,10 +2,10 @@ import { Duration, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Bucket, BucketEncryption, BlockPublicAccess } from 'aws-cdk-lib/aws-s3';
 import { Distribution, ViewerProtocolPolicy, AllowedMethods, CachedMethods, OriginAccessIdentity } from 'aws-cdk-lib/aws-cloudfront';
-import { S3Origin } from 'aws-cdk-lib/aws-cloudfront-origins';
+import { S3BucketOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import { HostedZone, IHostedZone, ARecord, AaaaRecord, RecordTarget } from 'aws-cdk-lib/aws-route53';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
-import { DnsValidatedCertificate } from 'aws-cdk-lib/aws-certificatemanager';
+import { Certificate, CertificateValidation } from 'aws-cdk-lib/aws-certificatemanager';
 import { BucketDeployment, CacheControl, Source } from 'aws-cdk-lib/aws-s3-deployment';
 
 export class CdkStack extends Stack {
@@ -20,11 +20,10 @@ export class CdkStack extends Stack {
     });
 
     // Certificate for CloudFront must be in us-east-1. This creates it in us-east-1 and validates via DNS in the above zone.
-    const certificate = new DnsValidatedCertificate(this, 'SiteCertificate', {
+    const certificate = new Certificate(this, 'SiteCertificate', {
       domainName,
       subjectAlternativeNames: [`www.${domainName}`],
-      hostedZone: zone,
-      region: 'us-east-1',
+      validation: CertificateValidation.fromDns(zone),
     });
 
     // Private S3 bucket for site content, accessible only via CloudFront
@@ -44,7 +43,7 @@ export class CdkStack extends Stack {
     // CloudFront distribution with the S3 origin
     const distribution = new Distribution(this, 'SiteDistribution', {
       defaultBehavior: {
-        origin: new S3Origin(siteBucket, { originAccessIdentity: oai }),
+        origin: new S3BucketOrigin(siteBucket, { originAccessIdentity: oai }),
         viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         allowedMethods: AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         cachedMethods: CachedMethods.CACHE_GET_HEAD,
