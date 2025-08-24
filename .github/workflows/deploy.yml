@@ -58,3 +58,35 @@ jobs:
         working-directory: cdk
         run: npx cdk deploy --require-approval never
 
+      - name: Calculate and commit version
+        id: version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MSG"
+
+          if [[ "$COMMIT_MSG" == feat:* ]]; then
+            BUMP=minor
+          elif [[ "$COMMIT_MSG" == fix:* || "$COMMIT_MSG" == chore:* || "$COMMIT_MSG" == docs:* || "$COMMIT_MSG" == refactor:* || "$COMMIT_MSG" == perf:* ]]; then
+            BUMP=patch
+          else
+            echo "❌ Invalid commit message format"
+            exit 1
+          fi
+
+          cd nextjs
+          VERSION=$(npm version $BUMP --no-git-tag-version)
+          echo "Calculated version: $VERSION"
+
+          # Commit the version bump
+          cd ..
+          git add cdk/package.json cdk/package-lock.json
+          git add nextjs/package.json nextjs/package-lock.json
+          git commit -m "chore: bump version to $VERSION [skip ci]"
+          git push
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
