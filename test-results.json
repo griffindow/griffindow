@@ -1,0 +1,71 @@
+{
+	"config": {
+		"configFile": "/Users/griffin/Repositories/griffindow/playwright.config.ts",
+		"rootDir": "/Users/griffin/Repositories/griffindow/e2e",
+		"forbidOnly": true,
+		"fullyParallel": true,
+		"globalSetup": null,
+		"globalTeardown": null,
+		"globalTimeout": 0,
+		"grep": {},
+		"grepInvert": null,
+		"maxFailures": 0,
+		"metadata": {},
+		"preserveOutput": "always",
+		"reporter": [
+			["html", null],
+			["github", null],
+			[
+				"json",
+				{
+					"outputFile": "test-results.json"
+				}
+			]
+		],
+		"reportSlowTests": {
+			"max": 5,
+			"threshold": 300000
+		},
+		"quiet": false,
+		"projects": [
+			{
+				"outputDir": "/Users/griffin/Repositories/griffindow/test-results",
+				"repeatEach": 1,
+				"retries": 2,
+				"metadata": {},
+				"id": "chromium",
+				"name": "chromium",
+				"testDir": "/Users/griffin/Repositories/griffindow/e2e",
+				"testIgnore": [],
+				"testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+				"timeout": 30000
+			}
+		],
+		"shard": null,
+		"tags": [],
+		"updateSnapshots": "missing",
+		"updateSourceMethod": "patch",
+		"version": "1.57.0",
+		"workers": 1,
+		"webServer": {
+			"command": "npm run build && npm run preview",
+			"port": 4173,
+			"reuseExistingServer": false
+		}
+	},
+	"suites": [],
+	"errors": [
+		{
+			"message": "Error: http://localhost:4173 is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true in config.webServer.",
+			"stack": "Error: http://localhost:4173 is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true in config.webServer."
+		}
+	],
+	"stats": {
+		"startTime": "2025-12-10T00:47:33.211Z",
+		"duration": 5.599999999999966,
+		"expected": 0,
+		"skipped": 0,
+		"unexpected": 0,
+		"flaky": 0
+	}
+}
