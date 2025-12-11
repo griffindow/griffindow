@@ -3,7 +3,7 @@
 </svelte:head>
 
 <div class="min-h-screen flex flex-col bg-gradient-to-br from-[#c03556] via-[#d04764] to-[#b02848]">
-	<div class="flex-grow flex items-center justify-center px-4 py-16">
+	<main class="flex-grow flex items-center justify-center px-4 py-16">
 		<div class="max-w-2xl w-full text-center space-y-8">
 			<!-- Profile Picture -->
 			<div class="flex justify-center">
@@ -80,7 +80,7 @@
 				</a>
 			</div>
 		</div>
-	</div>
+	</main>
 
 	<!-- Footer -->
 	<footer class="py-6 text-center text-[#F5E6D3]/80 text-sm">
