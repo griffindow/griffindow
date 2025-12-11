@@ -2,7 +2,7 @@
 	<title>Griffin Dow - Product Engineer</title>
 </svelte:head>
 
-<div class="min-h-screen flex flex-col bg-gradient-to-br from-[#c03556] via-[#d04764] to-[#b02848]">
+<div class="min-h-screen flex flex-col bg-[#c03556]">
 	<main class="flex-grow flex items-center justify-center px-4 py-16">
 		<div class="max-w-2xl w-full text-center space-y-8">
 			<!-- Profile Picture -->
@@ -32,7 +32,7 @@
 					href="https://linkedin.com/in/griffinodow"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="inline-flex items-center justify-center gap-2 w-36 px-6 py-3 bg-[#a16a8a] backdrop-blur-sm border-2 border-[#5c364c] rounded-lg text-[#F5E6D3] font-medium hover:bg-[#8e5c79] hover:border-[#5c364c] hover:scale-105 transition-all duration-200 shadow-xl shadow-[#a16a8a]/20"
+					class="inline-flex items-center justify-center gap-2 w-36 px-6 py-3 bg-[#a16a8a] backdrop-blur-sm border-2 border-[#5c364c] rounded-lg text-[#1a0d15] font-medium hover:bg-[#8e5c79] hover:border-[#5c364c] hover:scale-105 transition-all duration-200 shadow-xl shadow-[#a16a8a]/20"
 				>
 					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path
@@ -46,7 +46,7 @@
 					href="https://github.com/griffindow"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="inline-flex items-center justify-center gap-2 w-36 px-6 py-3 bg-[#a16a8a] backdrop-blur-sm border-2 border-[#5c364c] rounded-lg text-[#F5E6D3] font-medium hover:bg-[#8e5c79] hover:border-[#5c364c] hover:scale-105 transition-all duration-200 shadow-xl shadow-[#a16a8a]/20"
+					class="inline-flex items-center justify-center gap-2 w-36 px-6 py-3 bg-[#a16a8a] backdrop-blur-sm border-2 border-[#5c364c] rounded-lg text-[#1a0d15] font-medium hover:bg-[#8e5c79] hover:border-[#5c364c] hover:scale-105 transition-all duration-200 shadow-xl shadow-[#a16a8a]/20"
 				>
 					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path
@@ -60,7 +60,7 @@
 
 				<a
 					href="mailto:griffin@griffindow.com"
-					class="inline-flex items-center justify-center gap-2 w-36 px-6 py-3 bg-[#a16a8a] backdrop-blur-sm border-2 border-[#5c364c] rounded-lg text-[#F5E6D3] font-medium hover:bg-[#8e5c79] hover:border-[#5c364c] hover:scale-105 transition-all duration-200 shadow-xl shadow-[#a16a8a]/20"
+					class="inline-flex items-center justify-center gap-2 w-36 px-6 py-3 bg-[#a16a8a] backdrop-blur-sm border-2 border-[#5c364c] rounded-lg text-[#1a0d15] font-medium hover:bg-[#8e5c79] hover:border-[#5c364c] hover:scale-105 transition-all duration-200 shadow-xl shadow-[#a16a8a]/20"
 				>
 					<svg
 						class="w-5 h-5"
